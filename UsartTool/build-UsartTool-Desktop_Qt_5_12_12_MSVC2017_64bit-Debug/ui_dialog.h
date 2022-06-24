@@ -46,11 +46,13 @@ public:
     QTextEdit *textEditReceiver;
     QTextEdit *textEditSend;
     QPushButton *btnSend;
-    QWidget *widget;
+    QGroupBox *groupBox_3;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QPushButton *btnClean;
     QCheckBox *hexReceive;
     QCheckBox *hexSend;
+    QPushButton *btnSave;
 
     void setupUi(QDialog *Dialog)
     {
@@ -148,26 +150,34 @@ public:
         btnSend = new QPushButton(groupBox_2);
         btnSend->setObjectName(QString::fromUtf8("btnSend"));
         btnSend->setGeometry(QRect(500, 400, 91, 91));
-        widget = new QWidget(Dialog);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(30, 330, 131, 191));
-        verticalLayout = new QVBoxLayout(widget);
+        groupBox_3 = new QGroupBox(Dialog);
+        groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
+        groupBox_3->setGeometry(QRect(10, 310, 171, 241));
+        layoutWidget = new QWidget(groupBox_3);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(20, 20, 131, 211));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        btnClean = new QPushButton(widget);
+        btnClean = new QPushButton(layoutWidget);
         btnClean->setObjectName(QString::fromUtf8("btnClean"));
 
         verticalLayout->addWidget(btnClean);
 
-        hexReceive = new QCheckBox(widget);
+        hexReceive = new QCheckBox(layoutWidget);
         hexReceive->setObjectName(QString::fromUtf8("hexReceive"));
 
         verticalLayout->addWidget(hexReceive);
 
-        hexSend = new QCheckBox(widget);
+        hexSend = new QCheckBox(layoutWidget);
         hexSend->setObjectName(QString::fromUtf8("hexSend"));
 
         verticalLayout->addWidget(hexSend);
+
+        btnSave = new QPushButton(layoutWidget);
+        btnSave->setObjectName(QString::fromUtf8("btnSave"));
+
+        verticalLayout->addWidget(btnSave);
 
 
         retranslateUi(Dialog);
@@ -193,10 +203,10 @@ public:
         cboxParity->setItemText(4, QApplication::translate("Dialog", "Space", nullptr));
 
         label_4->setText(QApplication::translate("Dialog", " \346\225\260\346\215\256\344\275\215", nullptr));
-        cboxDataBits->setItemText(0, QApplication::translate("Dialog", "5", nullptr));
-        cboxDataBits->setItemText(1, QApplication::translate("Dialog", "6", nullptr));
-        cboxDataBits->setItemText(2, QApplication::translate("Dialog", "7", nullptr));
-        cboxDataBits->setItemText(3, QApplication::translate("Dialog", "8", nullptr));
+        cboxDataBits->setItemText(0, QApplication::translate("Dialog", "8", nullptr));
+        cboxDataBits->setItemText(1, QApplication::translate("Dialog", "7", nullptr));
+        cboxDataBits->setItemText(2, QApplication::translate("Dialog", "6", nullptr));
+        cboxDataBits->setItemText(3, QApplication::translate("Dialog", "5", nullptr));
 
         label_5->setText(QApplication::translate("Dialog", " \345\201\234\346\255\242\344\275\215", nullptr));
         cboxStopBits->setItemText(0, QApplication::translate("Dialog", "1", nullptr));
@@ -206,9 +216,11 @@ public:
         btnOpen->setText(QApplication::translate("Dialog", "\346\211\223\345\274\200\344\270\262\345\217\243", nullptr));
         groupBox_2->setTitle(QApplication::translate("Dialog", "\346\225\260\346\215\256\347\252\227\345\217\243", nullptr));
         btnSend->setText(QApplication::translate("Dialog", "\345\217\221\351\200\201", nullptr));
+        groupBox_3->setTitle(QApplication::translate("Dialog", "\345\212\237\350\203\275\346\214\211\351\222\256", nullptr));
         btnClean->setText(QApplication::translate("Dialog", "\346\270\205\351\231\244\346\216\245\346\224\266", nullptr));
         hexReceive->setText(QApplication::translate("Dialog", "16\350\277\233\345\210\266\346\230\276\347\244\272", nullptr));
         hexSend->setText(QApplication::translate("Dialog", "16\350\277\233\345\210\266\345\217\221\351\200\201", nullptr));
+        btnSave->setText(QApplication::translate("Dialog", "\344\277\235\345\255\230\346\227\245\345\277\227", nullptr));
     } // retranslateUi
 
 };
