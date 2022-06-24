@@ -35,6 +35,10 @@ private slots:
     void Dialog::StringToHex(QString str, QByteArray &senddata);
 
     char Dialog::ConvertHexChar(char ch);
+    
+    void on_btnSave_clicked();
+
+    bool Dialog::saveTextByIODevice(const QString &aFileName);
 
 private:
     Ui::Dialog *ui;
