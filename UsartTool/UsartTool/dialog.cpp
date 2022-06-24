@@ -5,6 +5,9 @@
 #include <QSerialPortInfo>
 #include <QList>
 #include <QDebug>
+#include <QDir>
+#include <QFileInfo>
+#include <QFileDialog>
 
 Dialog::Dialog(QWidget *parent)
     : QDialog(parent)
@@ -27,6 +30,16 @@ Dialog::Dialog(QWidget *parent)
     }
     //接收数据
     connect(&mSerialPort,SIGNAL(readyRead()),this,SLOT(on_SerialPort_readyRead()));
+    //保存日志
+//    connect(ui->btnSave,&QPushButton::clicked,[=](){
+//                QFile file("UART_Rec.txt");
+//                file.open(QIODevice::Append);
+//                //使用QTextStream写入文件
+//                QTextStream tsm(&file);
+//                tsm<<ui->textEditReceiver->toPlainText();
+//                ui->textEditReceiver->clear();
+//                file.close();
+//                });
 
 }
 
@@ -174,6 +187,7 @@ void Dialog::on_btnSend_clicked()
         }
         else //16进制发送
         {
+
             QString str = ui->textEditSend->toPlainText().toStdString().c_str();
             int len = str.length();
             if(len%2 == 1)   //如果发送的数据个数为奇数的，则在前面最后落单的字符前添加一个字符0
@@ -196,12 +210,12 @@ void Dialog::on_SerialPort_readyRead()
     {
         //读串口
         QByteArray recvData = mSerialPort.readAll();
-        if(receive16 == false) //非16进制接收
+        if(receive16 == false) //非16进制显示
         {
             //数据显示在文本框中(追加)
             ui->textEditReceiver->append(QString(recvData));
         }
-        else
+        else //16进制显示
         {
             QDataStream out(&recvData,QIODevice::ReadWrite);
             while(!out.atEnd())
@@ -300,5 +314,31 @@ char Dialog::ConvertHexChar(char ch)
     else if((ch >= 'a') && (ch <= 'f'))
         return ch-'a'+10;
     else return ch-ch;//不在0-f范围内的会发送成0
+}
+
+//保存日志
+void Dialog::on_btnSave_clicked()
+{
+    QString curPath = QDir::currentPath();      //获取系统当前目录
+    QString dlgTitle = "另存为一个文件 ";           //对话框标题
+    QString filter = "文本文件(*.txt);;所有文件(*.*);;h文件(*.h)";    //文件过滤器
+    QString aFileName = QFileDialog::getSaveFileName(this,dlgTitle,curPath,filter);
+    if (aFileName.isEmpty())
+        return;
+    saveTextByIODevice(aFileName);
+}
+
+bool Dialog::saveTextByIODevice(const QString &aFileName)
+{
+    QFile aFile(aFileName);
+    if (!aFile.open(QIODevice::WriteOnly | QIODevice::Text))
+        return false;
+    QString str = ui->textEditReceiver->toPlainText();     //整个内容作为字符串
+    QByteArray strBytes = str.toUtf8();                 //转换为字节数组
+    aFile.write(strBytes,strBytes.length());            //写入文件
+    aFile.close();
+    ui->textEditReceiver->clear();
+
+    return true;
 }
 
