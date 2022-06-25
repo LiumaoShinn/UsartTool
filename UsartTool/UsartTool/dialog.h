@@ -3,6 +3,9 @@
 
 #include <QDialog>
 #include <QSerialPort>
+#include <QDir>
+#include <QFileInfo>
+#include <QFileDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Dialog; }
@@ -35,10 +38,14 @@ private slots:
     void Dialog::StringToHex(QString str, QByteArray &senddata);
 
     char Dialog::ConvertHexChar(char ch);
-    
+
     void on_btnSave_clicked();
 
     bool Dialog::saveTextByIODevice(const QString &aFileName);
+
+    void on_btnReadLog_clicked();
+
+    bool Dialog::openTextByIODevice(const QString &aFileName);
 
 private:
     Ui::Dialog *ui;

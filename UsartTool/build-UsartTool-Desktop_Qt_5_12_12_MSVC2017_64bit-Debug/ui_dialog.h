@@ -52,6 +52,7 @@ public:
     QPushButton *btnClean;
     QCheckBox *hexReceive;
     QCheckBox *hexSend;
+    QPushButton *btnReadLog;
     QPushButton *btnSave;
 
     void setupUi(QDialog *Dialog)
@@ -174,6 +175,11 @@ public:
 
         verticalLayout->addWidget(hexSend);
 
+        btnReadLog = new QPushButton(layoutWidget);
+        btnReadLog->setObjectName(QString::fromUtf8("btnReadLog"));
+
+        verticalLayout->addWidget(btnReadLog);
+
         btnSave = new QPushButton(layoutWidget);
         btnSave->setObjectName(QString::fromUtf8("btnSave"));
 
@@ -220,6 +226,7 @@ public:
         btnClean->setText(QApplication::translate("Dialog", "\346\270\205\351\231\244\346\216\245\346\224\266", nullptr));
         hexReceive->setText(QApplication::translate("Dialog", "16\350\277\233\345\210\266\346\230\276\347\244\272", nullptr));
         hexSend->setText(QApplication::translate("Dialog", "16\350\277\233\345\210\266\345\217\221\351\200\201", nullptr));
+        btnReadLog->setText(QApplication::translate("Dialog", "\350\275\275\345\205\245\346\227\245\345\277\227", nullptr));
         btnSave->setText(QApplication::translate("Dialog", "\344\277\235\345\255\230\346\227\245\345\277\227", nullptr));
     } // retranslateUi
 

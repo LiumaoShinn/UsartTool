@@ -319,26 +319,51 @@ char Dialog::ConvertHexChar(char ch)
 //保存日志
 void Dialog::on_btnSave_clicked()
 {
-    QString curPath = QDir::currentPath();      //获取系统当前目录
-    QString dlgTitle = "另存为一个文件 ";           //对话框标题
-    QString filter = "文本文件(*.txt);;所有文件(*.*);;h文件(*.h)";    //文件过滤器
+    QString curPath = QDir::currentPath();//获取系统当前目录
+    QString dlgTitle = "另存为一个文件 ";//对话框标题
+    QString filter = "文本文件(*.txt);;所有文件(*.*);;h文件(*.h)";//文件过滤器
     QString aFileName = QFileDialog::getSaveFileName(this,dlgTitle,curPath,filter);
     if (aFileName.isEmpty())
         return;
-    saveTextByIODevice(aFileName);
+    saveTextByIODevice(aFileName); //调用IOdevice保存文本的函数
 }
-
+//通过IOdevice实现将文本框内数据输出到文本中保存
 bool Dialog::saveTextByIODevice(const QString &aFileName)
 {
     QFile aFile(aFileName);
-    if (!aFile.open(QIODevice::WriteOnly | QIODevice::Text))
+    if (!aFile.open(QIODevice::WriteOnly | QIODevice::Text))//打开文件失败
         return false;
-    QString str = ui->textEditReceiver->toPlainText();     //整个内容作为字符串
-    QByteArray strBytes = str.toUtf8();                 //转换为字节数组
-    aFile.write(strBytes,strBytes.length());            //写入文件
+    QString str = ui->textEditReceiver->toPlainText();//读取窗口内的数据，作为字符串
+    QByteArray strBytes = str.toUtf8(); //字符串转换为字节数组
+    aFile.write(strBytes,strBytes.length());//写入文件
     aFile.close();
-    ui->textEditReceiver->clear();
+    ui->textEditReceiver->clear();//清屏
 
     return true;
+}
+
+//载入日志
+void Dialog::on_btnReadLog_clicked()
+{
+    QString curPath=QDir::currentPath();//获取系统当前目录
+    QString dlgTitle="打开文件 "; //对话框标题
+    QString filter="文本文件(*.txt);;程序文件(*.h *.cpp);;所有文件(*.*)"; //文件过滤器
+    QString aFileName=QFileDialog::getOpenFileName(this,dlgTitle,curPath,filter);
+
+    if (aFileName.isEmpty())//文件为空
+        return;
+    openTextByIODevice(aFileName);
+}
+//通过IOdevice实现将文本内容读取出来加载到界面文本框中
+bool Dialog::openTextByIODevice(const QString &aFileName)
+{
+    QFile aFile(aFileName);
+    if (!aFile.exists()) //文件不存在
+        return false;
+    if (!aFile.open(QIODevice::ReadOnly | QIODevice::Text))//打开文件失败
+        return false;
+    ui->textEditReceiver->insertPlainText(QString(aFile.readAll()));//数据显示在文本框中
+    aFile.close();
+    return  true;
 }
 
