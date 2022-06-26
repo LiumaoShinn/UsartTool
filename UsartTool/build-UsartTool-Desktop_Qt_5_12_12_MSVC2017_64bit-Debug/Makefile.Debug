@@ -53,7 +53,7 @@ OBJECTS       = debug\main.obj \
 		debug\dialog.obj \
 		debug\moc_dialog.obj
 
-DIST          =  ..\UsartTool\dialog.h ..\UsartTool\main.cpp \
+DIST          = dialog.rc ..\UsartTool\dialog.h ..\UsartTool\main.cpp \
 		..\UsartTool\dialog.cpp
 QMAKE_TARGET  = UsartTool
 DESTDIR        = debug\ #avoid trailing-slash linebreak
@@ -278,6 +278,15 @@ debug\moc_dialog.cpp: ..\UsartTool\dialog.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\qfiledevice.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtGui\qvector2d.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtGui\qtouchdevice.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtSerialPort\QSerialPort \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtSerialPort\qserialport.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtSerialPort\qserialportglobal.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\QDir \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\qdir.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\qfileinfo.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\QFileInfo \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\QFileDialog \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\qfiledialog.h \
 		debug\moc_predefs.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\bin\moc.exe
 	E:\Qt\Qt5.12.12\5.12.12\msvc2017_64\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include E:/Qt/Work/UsartTool/build-UsartTool-Desktop_Qt_5_12_12_MSVC2017_64bit-Debug/debug/moc_predefs.h -IE:/Qt/Qt5.12.12/5.12.12/msvc2017_64/mkspecs/win32-msvc -IE:/Qt/Work/UsartTool/UsartTool -IE:/Qt/Qt5.12.12/5.12.12/msvc2017_64/include -IE:/Qt/Qt5.12.12/5.12.12/msvc2017_64/include/QtWidgets -IE:/Qt/Qt5.12.12/5.12.12/msvc2017_64/include/QtGui -IE:/Qt/Qt5.12.12/5.12.12/msvc2017_64/include/QtANGLE -IE:/Qt/Qt5.12.12/5.12.12/msvc2017_64/include/QtSerialPort -IE:/Qt/Qt5.12.12/5.12.12/msvc2017_64/include/QtCore -I. -I"E:\Microsoft Visual Studio\2019\Entreprise\VC\Tools\MSVC\14.29.30133\include" -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.8\include\um" -I"E:\Windows Kits\10\include\10.0.19041.0\ucrt" -I"E:\Windows Kits\10\include\10.0.19041.0\shared" -I"E:\Windows Kits\10\include\10.0.19041.0\um" -I"E:\Windows Kits\10\include\10.0.19041.0\winrt" -I"E:\Windows Kits\10\include\10.0.19041.0\cppwinrt" ..\UsartTool\dialog.h -o debug\moc_dialog.cpp
@@ -410,6 +419,15 @@ debug\main.obj: ..\UsartTool\main.cpp ..\UsartTool\dialog.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\qfiledevice.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtGui\qvector2d.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtGui\qtouchdevice.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtSerialPort\QSerialPort \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtSerialPort\qserialport.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtSerialPort\qserialportglobal.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\QDir \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\qdir.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\qfileinfo.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\QFileInfo \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\QFileDialog \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\qfiledialog.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\QApplication \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\qapplication.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\qcoreapplication.h \
@@ -523,6 +541,15 @@ debug\dialog.obj: ..\UsartTool\dialog.cpp ..\UsartTool\dialog.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\qfiledevice.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtGui\qvector2d.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtGui\qtouchdevice.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtSerialPort\QSerialPort \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtSerialPort\qserialport.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtSerialPort\qserialportglobal.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\QDir \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\qdir.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\qfileinfo.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\QFileInfo \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\QFileDialog \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\qfiledialog.h \
 		ui_dialog.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\QVariant \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\QApplication \
@@ -532,6 +559,10 @@ debug\dialog.obj: ..\UsartTool\dialog.cpp ..\UsartTool\dialog.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\qdesktopwidget.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtGui\qguiapplication.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtGui\qinputmethod.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\QCheckBox \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\qcheckbox.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\qabstractbutton.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtGui\qicon.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\QComboBox \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\qcombobox.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\qabstractitemdelegate.h \
@@ -539,7 +570,6 @@ debug\dialog.obj: ..\UsartTool\dialog.cpp ..\UsartTool\dialog.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\qabstractspinbox.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtGui\qvalidator.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\qregularexpression.h \
-		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtGui\qicon.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\qslider.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\qabstractslider.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\qstyle.h \
@@ -561,7 +591,6 @@ debug\dialog.obj: ..\UsartTool\dialog.cpp ..\UsartTool\dialog.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\qlabel.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\QPushButton \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\qpushbutton.h \
-		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\qabstractbutton.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\QSpacerItem \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\QTextEdit \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\qtextedit.h \
@@ -571,12 +600,12 @@ debug\dialog.obj: ..\UsartTool\dialog.cpp ..\UsartTool\dialog.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtGui\qtextcursor.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtGui\qtextformat.h \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtGui\qpen.h \
-		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtSerialPort\QSerialPort \
-		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtSerialPort\qserialport.h \
-		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtSerialPort\qserialportglobal.h \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\QVBoxLayout \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtWidgets\QWidget \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtSerialPort\QSerialPortInfo \
 		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtSerialPort\qserialportinfo.h \
-		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtGui\QList
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtGui\QList \
+		..\..\..\Qt5.12.12\5.12.12\msvc2017_64\include\QtCore\QDebug
 
 debug\moc_dialog.obj: debug\moc_dialog.cpp 
 

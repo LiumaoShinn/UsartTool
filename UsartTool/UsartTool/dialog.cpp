@@ -180,25 +180,34 @@ void Dialog::on_btnSend_clicked()
 {
     if(ComIsOpen == true)
     {
+        QByteArray bytearray;
         if(send16 == false)//非16进制发送
         {
             //数据写入串口
-            mSerialPort.write(ui->textEditSend->toPlainText().toStdString().c_str());
+            Sendtext=ui->textEditSend->toPlainText().toStdString().c_str();
+            //新行
+            if(ui->newLine->checkState()==Qt::Checked)
+            {
+                Sendtext += "\r\n";//换行
+            }
+            bytearray = Sendtext.toLatin1();
+            mSerialPort.write(bytearray);
         }
         else //16进制发送
         {
 
-            QString str = ui->textEditSend->toPlainText().toStdString().c_str();
-            int len = str.length();
+            bytearray = ui->textEditSend->toPlainText().toStdString().c_str();
+            int len = bytearray.length();
             if(len%2 == 1)   //如果发送的数据个数为奇数的，则在前面最后落单的字符前添加一个字符0
             {
-                str = str.insert(len-1,'0'); //insert(int position, const QString & str)
+                bytearray = bytearray.insert(len-1,'0'); //insert(int position, const QString & str)
             }
             QByteArray senddata;
 
-            StringToHex(str,senddata);
+            StringToHex(bytearray,senddata);
             mSerialPort.write(senddata);
         }
+        ui->textEditSend->moveCursor(QTextCursor::End);
 
     }
 
@@ -209,25 +218,25 @@ void Dialog::on_SerialPort_readyRead()
     if(ComIsOpen == true)
     {
         //读串口
-        QByteArray recvData = mSerialPort.readAll();
         if(receive16 == false) //非16进制显示
         {
+            QString str = ui->textEditReceiver->toPlainText();
+            Receivetext = mSerialPort.readAll();
             //数据显示在文本框中(追加)
-            ui->textEditReceiver->append(QString(recvData));
+            Receivetext=Receivetext.toLatin1();
+            str=str.append(Receivetext);
+            ui->textEditReceiver->setText(str);
         }
         else //16进制显示
         {
-            QDataStream out(&recvData,QIODevice::ReadWrite);
-            while(!out.atEnd())
-            {
-                   qint8 outChar = 0;
-                   out>>outChar;   //每字节填充一次，直到结束
-                   //十六进制的转换
-                   QString str = QString("%1").arg(outChar&0xFF,2,16,QLatin1Char('0'));
-                   ui->textEditReceiver->insertPlainText(str.toUpper());//大写
-                   ui->textEditReceiver->insertPlainText(" ");//每发送两个字符后添加一个空格
-                   ui->textEditReceiver->moveCursor(QTextCursor::End);
-            }
+            QByteArray buf = mSerialPort.readAll();
+            QString str = ui->textEditReceiver->toPlainText();
+            QByteArray temp = buf.toHex();
+            str+=tr(temp);
+            str += "  ";
+            ui->textEditReceiver->clear();
+            ui->textEditReceiver->append(str.toUpper());
+            buf.clear();
         }
 
     }
@@ -270,8 +279,8 @@ void Dialog::on_hexSend_stateChanged(int arg1)
     }
 }
 
-
-void Dialog::StringToHex(QString str, QByteArray &senddata) //字符串转换为十六进制数据0-F
+//字符串转换为十六进制数据0-F
+void Dialog::StringToHex(QString str, QByteArray &senddata)
 {
     int hexdata,lowhexdata;
     int hexdatalen = 0;
@@ -305,6 +314,7 @@ void Dialog::StringToHex(QString str, QByteArray &senddata) //字符串转换为
     senddata.resize(hexdatalen);
 }
 
+//char转16进制
 char Dialog::ConvertHexChar(char ch)
 {
     if((ch >= '0') && (ch <= '9'))
@@ -314,6 +324,11 @@ char Dialog::ConvertHexChar(char ch)
     else if((ch >= 'a') && (ch <= 'f'))
         return ch-'a'+10;
     else return ch-ch;//不在0-f范围内的会发送成0
+    /*
+    0x30等于十进制的48，48也是0的ASCII值，，
+    1-9的ASCII值是49-57，，所以某一个值－0x30，，
+    就是将字符0-9转换为0-9
+    */
 }
 
 //保存日志

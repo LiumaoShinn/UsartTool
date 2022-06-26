@@ -267,6 +267,13 @@
       </widget>
      </item>
      <item>
+      <widget class="QCheckBox" name="newLine">
+       <property name="text">
+        <string>发送新行</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="btnReadLog">
        <property name="text">
         <string>载入日志</string>

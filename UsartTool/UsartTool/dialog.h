@@ -57,6 +57,7 @@ private:
     QString mParity;
     QString mDataBits;
     QString mStopBits;
+    QString Sendtext,Receivetext;
 
     bool send16;
     bool receive16;
