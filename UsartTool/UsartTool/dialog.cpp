@@ -220,23 +220,23 @@ void Dialog::on_SerialPort_readyRead()
         //读串口
         if(receive16 == false) //非16进制显示
         {
-            QString str = ui->textEditReceiver->toPlainText();
-            Receivetext = mSerialPort.readAll();
+            QString str = ui->textEditReceiver->toPlainText();//读取文本框内的内容
+            Receivetext = mSerialPort.readAll();//读串口数据
             //数据显示在文本框中(追加)
             Receivetext=Receivetext.toLatin1();
-            str=str.append(Receivetext);
-            ui->textEditReceiver->setText(str);
+            str=str.append(Receivetext);//将串口读出的数据追加到原来的文本框内的内容后
+            ui->textEditReceiver->setText(str);//在文本框内显示
         }
         else //16进制显示
         {
-            QByteArray buf = mSerialPort.readAll();
-            QString str = ui->textEditReceiver->toPlainText();
-            QByteArray temp = buf.toHex();
-            str+=tr(temp);
+            QByteArray buf = mSerialPort.readAll();//读串口数据
+            QString str = ui->textEditReceiver->toPlainText(); //读取文本框内的内容
+            QByteArray temp = buf.toHex();//串口数据转16进制
+            str+=tr(temp);//合并数据
             str += "  ";
             ui->textEditReceiver->clear();
-            ui->textEditReceiver->append(str.toUpper());
-            buf.clear();
+            ui->textEditReceiver->append(str.toUpper());//在文本框内显示
+            buf.clear();//清除缓冲
         }
 
     }
